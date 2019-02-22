@@ -1,4 +1,6 @@
 class Comment
+  attr_accessor :photo
+  
   @@comments = []
 
   def initialize(message)

@@ -1,11 +1,10 @@
 class Photo
-  attr_accessor :user, :comments
+  attr_accessor :user
 
   @@photos = []
 
   def initialize
     @@photos << self
-    @comments = []
   end
 
   def self.all
@@ -14,6 +13,10 @@ class Photo
 
   def make_comment(message)
     comment = Comment.new(message)
-    @comments << comment
+    comment.photo = self
+  end
+
+  def comments
+    Comment.all.select {|comment| comment.photo == self}
   end
 end
